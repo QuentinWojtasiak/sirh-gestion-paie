@@ -16,6 +16,12 @@
 		<property name="tauxSalarial" value="1.5"></property>
 		<property name="tauxPatronal" value="1.7"></property>
 	</bean>
+	
+	<bean id="av1" class="dev.paie.entite.Avantage">
+		<property name="code" value="code1"></property>
+		<property name="nom" value="nom1"></property>
+		<property name="montant" value="100"></property>
+	</bean>
 
 	<bean id="profil1" class="dev.paie.entite.ProfilRemuneration">
 		<property name="cotisationsNonImposables">
