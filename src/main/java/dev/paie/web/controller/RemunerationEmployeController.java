@@ -35,7 +35,7 @@ public class RemunerationEmployeController {
 	@Autowired
 	private EmployeService employeService;
 
-	@RequestMapping(method = RequestMethod.GET, path = "/creer")
+	@RequestMapping(method = RequestMethod.GET, path = "/creerEmploye")
 	public ModelAndView creerEmploye() {
 		List<Grade> grades = gradeServiceJdbcTemplate.lister();
 		List<ProfilRemuneration> profils = profilService.getLesProfil();
@@ -49,14 +49,14 @@ public class RemunerationEmployeController {
 		return mv;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, path = "/creer")
+	@RequestMapping(method = RequestMethod.POST, path = "/creerEmploye")
 	public String submitForm(@ModelAttribute("employe") RemunerationEmploye emp) {
 		emp.setDateCreation(LocalDateTime.now());
 		employeService.saveEmp(emp);
-		return "redirect:/mvc/employes/lister";
+		return "redirect:/mvc/employes/listeEmploye";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/lister")
+	@RequestMapping(method = RequestMethod.GET, path = "/listeEmploye")
 	public ModelAndView listerEmploye() {
 		List<RemunerationEmploye> employes = employeService.getLesEmploye();
 		ModelAndView mv = new ModelAndView();

@@ -17,4 +17,5 @@ public class ProfilService {
 	public List<ProfilRemuneration> getLesProfil() {
 		return profilRepository.findAll();
 	}
+
 }

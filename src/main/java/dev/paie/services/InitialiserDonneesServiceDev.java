@@ -1,5 +1,7 @@
 package dev.paie.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.paie.entite.Cotisation;
 import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
+import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
 
 @Service
@@ -50,5 +53,17 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		for (ProfilRemuneration p : profils.values()) {
 			em.persist(p);
 		}
+
+		int annee = LocalDateTime.now().getYear();
+		for (int i = 1; i < 13; i++) {
+			Periode p = new Periode();
+			LocalDate date = LocalDate.of(annee, i, 1);
+			p.setDateDebut(date);
+			date = LocalDate.of(annee, i, date.getMonth().minLength());
+			p.setDateFin(date);
+			em.persist(p);
+		}
+
+		context.close();
 	}
 }

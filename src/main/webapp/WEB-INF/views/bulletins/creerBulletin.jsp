@@ -47,17 +47,17 @@
 		<form:form method="post" modelAttribute="employe">
 			<div class="row mt-2">
 				<div class="col">
-					<span class="input-group-text" id="basic-addon3">Matricule :</span>
+					<span class="input-group-text" id="basic-addon3">Prime exceptionnelle :</span>
 				</div>
 				<div class="col">
-					<form:input type="text" path="matricule" name="matricule"
+					<form:input type="text" path="prime"
 						class="form-control" id="basic-url"
 						aria-describedby="basic-addon3" require="true" />
 				</div>
 			</div>
 			<div class="row mt-2">
 				<div class="col">
-					<span class="input-group-text" id="basic-addon3">Entreprise
+					<span class="input-group-text" id="basic-addon3">Période
 						:</span>
 				</div>
 				<div class="col">
@@ -70,23 +70,12 @@
 			</div>
 			<div class="row mt-2">
 				<div class="col">
-					<span class="input-group-text" id="basic-addon3">Profil :</span>
+					<span class="input-group-text" id="basic-addon3">Matricule :</span>
 				</div>
 				<div class="col">
 					<form:select path="profilRemuneration.id">
 						<form:option value="NONE" label="--- Select ---" />
 						<form:options items="${profils}" itemLabel="code" itemValue="id" />
-					</form:select>
-				</div>
-			</div>
-			<div class="row mt-2">
-				<div class="col">
-					<span class="input-group-text" id="basic-addon3">Grade :</span>
-				</div>
-				<div class="col">
-					<form:select path="grade.id">
-						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${grades}" itemLabel="code" itemValue="id" />
 					</form:select>
 				</div>
 			</div>

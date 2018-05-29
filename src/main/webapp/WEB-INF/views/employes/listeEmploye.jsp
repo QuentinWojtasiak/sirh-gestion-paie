@@ -38,16 +38,16 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Employés</a>
+				<li class="nav-item"><a class="nav-link" href="creerEmploye">Employés</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Bulletins</a>
+				<li class="nav-item"><a class="nav-link" href="creerBulletin">Bulletins</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
 	<div class="container mt-5">
 		<h2>Liste des employés</h2>
-		<a href="creer" class="btn btn-outline-dark float-right mt-2">Créer</a>
+		<a href="creerEmploye" class="btn btn-outline-dark float-right mt-2 mb-2 mr-2">Créer un nouvel employé</a>
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
