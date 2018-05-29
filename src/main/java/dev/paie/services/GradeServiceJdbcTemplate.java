@@ -23,19 +23,19 @@ public class GradeServiceJdbcTemplate implements GradeService {
 
 	@Override
 	public void sauvegarder(Grade nouveauGrade) {
-		String sql = "INSERT INTO grade (code,nbheurebase,tauxbase) VALUES(?,?,?)";
+		String sql = "INSERT INTO Grade (code,nbHeuresBase,tauxBase) VALUES(?,?,?)";
 		jdbcTemplate.update(sql, nouveauGrade.getCode(), nouveauGrade.getNbHeuresBase(), nouveauGrade.getTauxBase());
 	}
 
 	@Override
 	public void mettreAJour(Grade grade) {
-		String sqlUpdate = "UPDATE grade SET code = ? ,nbheurebase = ?, tauxbase = ?  WHERE ID = ? ";
+		String sqlUpdate = "UPDATE Grade SET code = ? ,nbHeuresBase = ?, tauxBase = ?  WHERE ID = ? ";
 		jdbcTemplate.update(sqlUpdate, grade.getCode(), grade.getNbHeuresBase(), grade.getTauxBase(), grade.getId());
 	}
 
 	@Override
 	public List<Grade> lister() {
-		String sql = "SELECT * FROM grade";
+		String sql = "SELECT * FROM Grade";
 		List<Grade> grades = jdbcTemplate.query(sql, new GradeMapper());
 		return grades;
 	}

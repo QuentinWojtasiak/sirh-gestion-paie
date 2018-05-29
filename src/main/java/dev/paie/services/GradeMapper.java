@@ -14,7 +14,7 @@ public class GradeMapper implements RowMapper<Grade> {
 		Grade g = new Grade();
 		g.setId(rs.getInt("id"));
 		g.setCode(rs.getString("code"));
-		g.setNbHeuresBase(rs.getBigDecimal("nbheurebase"));
+		g.setNbHeuresBase(rs.getBigDecimal("nbheuresbase"));
 		g.setTauxBase(rs.getBigDecimal("tauxbase"));
 		return g;
 	}
