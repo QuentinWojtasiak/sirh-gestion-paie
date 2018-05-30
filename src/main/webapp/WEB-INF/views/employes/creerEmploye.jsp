@@ -37,7 +37,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="creerEmploye">Employés</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="creerBulletin">Bulletins</a>
+				<li class="nav-item"><a class="nav-link" href="../bulletins/creerBulletin">Bulletins</a>
 				</li>
 			</ul>
 		</div>
@@ -50,9 +50,9 @@
 					<span class="input-group-text" id="basic-addon3">Matricule :</span>
 				</div>
 				<div class="col">
-					<form:input type="text" path="matricule" name="matricule"
+					<form:input type="text" path="matricule"
 						class="form-control" id="basic-url"
-						aria-describedby="basic-addon3" require="true" />
+						aria-describedby="basic-addon3"/>
 				</div>
 			</div>
 			<div class="row mt-2">
@@ -62,7 +62,6 @@
 				</div>
 				<div class="col">
 					<form:select path="entreprise.id">
-						<form:option value="NONE" label="--- Select ---" />
 						<form:options items="${lesEntre}" itemLabel="denomination"
 							itemValue="id" />
 					</form:select>
@@ -74,7 +73,6 @@
 				</div>
 				<div class="col">
 					<form:select path="profilRemuneration.id">
-						<form:option value="NONE" label="--- Select ---" />
 						<form:options items="${profils}" itemLabel="code" itemValue="id" />
 					</form:select>
 				</div>
@@ -85,7 +83,6 @@
 				</div>
 				<div class="col">
 					<form:select path="grade.id">
-						<form:option value="NONE" label="--- Select ---" />
 						<form:options items="${grades}" itemLabel="code" itemValue="id" />
 					</form:select>
 				</div>

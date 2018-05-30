@@ -40,7 +40,7 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="creerEmploye">Employés</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="creerBulletin">Bulletins</a>
+				<li class="nav-item"><a class="nav-link" href="../bulletins/creerBulletin">Bulletins</a>
 				</li>
 			</ul>
 		</div>

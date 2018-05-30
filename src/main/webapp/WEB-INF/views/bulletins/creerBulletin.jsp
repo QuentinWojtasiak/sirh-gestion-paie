@@ -35,7 +35,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="creerEmploye">Employés</a>
+				<li class="nav-item"><a class="nav-link" href="../employes/creerEmploye">Employés</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="creerBulletin">Bulletins</a>
 				</li>
@@ -43,16 +43,16 @@
 		</div>
 	</nav>
 	<div class="container mt-5">
-		<h2>Ajouter un employé</h2>
-		<form:form method="post" modelAttribute="employe">
+		<h2>Ajouter un bulletin</h2>
+		<form:form method="post" modelAttribute="bulletin">
 			<div class="row mt-2">
 				<div class="col">
 					<span class="input-group-text" id="basic-addon3">Prime exceptionnelle :</span>
 				</div>
 				<div class="col">
-					<form:input type="text" path="prime"
+					<form:input type="text" path="primeExceptionnelle"
 						class="form-control" id="basic-url"
-						aria-describedby="basic-addon3" require="true" />
+						aria-describedby="basic-addon3"/>
 				</div>
 			</div>
 			<div class="row mt-2">
@@ -61,10 +61,8 @@
 						:</span>
 				</div>
 				<div class="col">
-					<form:select path="entreprise.id">
-						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${lesEntre}" itemLabel="denomination"
-							itemValue="id" />
+					<form:select path="periode.id">
+						<form:options items="${periodes}" itemLabel="dateDebut" itemValue="id" />
 					</form:select>
 				</div>
 			</div>
@@ -73,9 +71,8 @@
 					<span class="input-group-text" id="basic-addon3">Matricule :</span>
 				</div>
 				<div class="col">
-					<form:select path="profilRemuneration.id">
-						<form:option value="NONE" label="--- Select ---" />
-						<form:options items="${profils}" itemLabel="code" itemValue="id" />
+					<form:select path="remunerationEmploye.id">
+						<form:options items="${employes}" itemLabel="matricule" itemValue="id" />
 					</form:select>
 				</div>
 			</div>
