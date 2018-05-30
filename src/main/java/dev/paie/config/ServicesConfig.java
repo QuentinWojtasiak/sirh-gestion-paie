@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @ComponentScan({ "dev.paie.services", "dev.paie.util" })
-@Import({ JpaConfig.class, DataSourceMySQLConfig.class })
+@Import({ JpaConfig.class, HerokuDBConfig.class })
 
 @EnableJpaRepositories("dev.paie.repository") // config a ajouter
 public class ServicesConfig {
