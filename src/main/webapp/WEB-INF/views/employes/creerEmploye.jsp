@@ -1,8 +1,16 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>SGP app</title>
+<style>
+    .error
+    {
+        color: #ff0000;
+        font-weight: bold;
+    }
+ </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
@@ -53,6 +61,7 @@
 					<form:input type="text" path="matricule"
 						class="form-control" id="basic-url"
 						aria-describedby="basic-addon3"/>
+                	<form:errors path="matricule" cssClass="error" />
 				</div>
 			</div>
 			<div class="row mt-2">
