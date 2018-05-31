@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class RemunerationEmployeController {
 	private EmployeService employeService;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/creerEmploye")
+	@Secured("ROLE_ADMINISTRATEUR")
 	public ModelAndView creerEmploye() {
 		List<Grade> grades = gradeServiceJdbcTemplate.lister();
 		List<ProfilRemuneration> profils = profilService.getLesProfil();
@@ -50,6 +52,7 @@ public class RemunerationEmployeController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creerEmploye")
+	@Secured("ROLE_ADMINISTRATEUR")
 	public String submitForm(@ModelAttribute("employe") RemunerationEmploye emp) {
 		emp.setDateCreation(LocalDateTime.now());
 		employeService.saveEmp(emp);
@@ -57,6 +60,7 @@ public class RemunerationEmployeController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/listeEmploye")
+	@Secured({ "ROLE_UTILISATEUR", "ROLE_ADMINISTRATEUR" })
 	public ModelAndView listerEmploye() {
 		List<RemunerationEmploye> employes = employeService.getLesEmploye();
 		ModelAndView mv = new ModelAndView();

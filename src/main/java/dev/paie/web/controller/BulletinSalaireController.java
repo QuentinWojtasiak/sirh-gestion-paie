@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class BulletinSalaireController {
 	private BulletinSalairerepository bulletinSalairerepository;
 
 	@RequestMapping(method = RequestMethod.GET, path = "/creerBulletin")
+	@Secured("ROLE_ADMINISTRATEUR")
 	public ModelAndView creerEmploye() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bulletins/creerBulletin");
@@ -39,6 +41,7 @@ public class BulletinSalaireController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creerBulletin")
+	@Secured("ROLE_ADMINISTRATEUR")
 	public String submitForm(@ModelAttribute("bulletin") BulletinSalaire bulletin) {
 		bulletin.setDateCreation(LocalDateTime.now());
 		bulletinSalairerepository.save(bulletin);
@@ -46,6 +49,7 @@ public class BulletinSalaireController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/listeBulletin")
+	@Secured({"ROLE_UTILISATEUR", "ROLE_ADMINISTRATEUR"})
 	public ModelAndView listerEmploye() {
 		List<BulletinSalaire> bulletins = bulletinSalairerepository.findAll();
 		ModelAndView mv = new ModelAndView();
