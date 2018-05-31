@@ -6,11 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.paie.entite.Collegue;
 import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.ProfilRemuneration;
@@ -53,10 +56,19 @@ public class RemunerationEmployeController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creerEmploye")
 	@Secured("ROLE_ADMINISTRATEUR")
-	public String submitForm(@ModelAttribute("employe") RemunerationEmploye emp) {
+	public String submitForm(@ModelAttribute("employe") RemunerationEmploye emp, BindingResult result) {
+		RestTemplate rt = new RestTemplate();
+		Collegue[] lesC = rt.getForObject("http://collegues-api.cleverapps.io/collegues", Collegue[].class);
 		emp.setDateCreation(LocalDateTime.now());
-		employeService.saveEmp(emp);
-		return "redirect:/mvc/employes/listeEmploye";
+		for (int i = 0; i < lesC.length; i++) {
+			if (lesC[i].getMatricule().equals(emp.getMatricule())) {
+				employeService.saveEmp(emp);
+				return "redirect:/mvc/employes/listeEmploye";
+			}
+		}
+
+		result.rejectValue("matricule", "error.matricule", "Le matricule n'existe pas");
+		return "redirect:/mvc/employes/creerEmploye";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/listeEmploye")

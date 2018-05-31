@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -53,6 +54,7 @@
 					<form:input type="text" path="matricule"
 						class="form-control" id="basic-url"
 						aria-describedby="basic-addon3"/>
+                	<form:errors path="matricule" cssClass="error" />
 				</div>
 			</div>
 			<div class="row mt-2">
