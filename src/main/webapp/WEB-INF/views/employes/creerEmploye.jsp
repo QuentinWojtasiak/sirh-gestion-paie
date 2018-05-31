@@ -4,6 +4,13 @@
 <html>
 <head>
 <title>SGP app</title>
+<style>
+    .error
+    {
+        color: #ff0000;
+        font-weight: bold;
+    }
+ </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"

@@ -56,19 +56,29 @@ public class RemunerationEmployeController {
 
 	@RequestMapping(method = RequestMethod.POST, path = "/creerEmploye")
 	@Secured("ROLE_ADMINISTRATEUR")
-	public String submitForm(@ModelAttribute("employe") RemunerationEmploye emp, BindingResult result) {
+	public ModelAndView submitForm(@ModelAttribute("employe") RemunerationEmploye emp, BindingResult result) {
 		RestTemplate rt = new RestTemplate();
 		Collegue[] lesC = rt.getForObject("http://collegues-api.cleverapps.io/collegues", Collegue[].class);
 		emp.setDateCreation(LocalDateTime.now());
 		for (int i = 0; i < lesC.length; i++) {
 			if (lesC[i].getMatricule().equals(emp.getMatricule())) {
 				employeService.saveEmp(emp);
-				return "redirect:/mvc/employes/listeEmploye";
+				return new ModelAndView("redirect:/mvc/employes/listeEmploye");
 			}
 		}
 
 		result.rejectValue("matricule", "error.matricule", "Le matricule n'existe pas");
-		return "redirect:/mvc/employes/creerEmploye";
+		List<Grade> grades = gradeServiceJdbcTemplate.lister();
+		List<ProfilRemuneration> profils = profilService.getLesProfil();
+		List<Entreprise> lesEntre = entrepriseService.getLesEntreprises();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("employes/creerEmploye");
+		mv.addObject("lesEntre", lesEntre);
+		mv.addObject("profils", profils);
+		mv.addObject("grades", grades);
+		// mv.addObject("employe", new RemunerationEmploye());
+		return mv;
+		// return creerEmploye();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = "/listeEmploye")
